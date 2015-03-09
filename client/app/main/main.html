@@ -1,0 +1,135 @@
+	<div>
+		<div class="row">
+			<div class="col-md-9">
+<!-- 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active">
+						</li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+						<li data-target="#myCarousel" data-slide-to="3"></li>
+					</ol>
+					<div class="carousel-inner" id="usp_CarouselDIV">
+					</div>
+				</div> -->
+				<carousel interval="myInterval" id="myCarousel">
+				  <slide ng-repeat="slide in slides" active="slide.active" class="carousel-inner">
+				  	<div>
+				  		<a ng-href="{{slide.ProductUrl}}"><img ng-src="{{slide.Image}}" /></a>
+				  	</div>
+<!-- 				    <img ng-src="{{slide.Image}}" style="margin:auto;">
+				    <div class="carousel-caption">
+				      <p>{{slide.Title}}</p>
+				    </div> -->
+				  </slide>
+				</carousel>
+			</div>
+			<div class="col-md-3  support-container">
+				<table id="u0" class="table-condensed">
+				<tr><td class="support-table-row Support-space"></td></tr>
+					<tr class="support-table-row">
+						<td><span>
+							<img src="/assets/images/NavTiles/u512.png" /></span></td>
+						<td class=" support-col"><a href="#">Password Reset</a> </td>
+					</tr>
+					<tr class="support-table-row">
+						<td><span>
+							<img src="/assets/images/NavTiles/u2.png" /></span></td>
+						<td class=" support-col"><a href="#">Open a Ticket</a></td>
+					</tr>
+					<tr class="support-table-row">
+						<td><span>
+							<img src="/assets/images/NavTiles/u516.png" /></span></td>
+						<td class=" support-col"><a href="/emc/usp/Pages/index.aspx#/myaccount">(Account Info)</a> </td>
+					</tr>
+					<tr class="support-table-row">
+						<td><span>
+							<img src="/assets/images/NavTiles/u514.png" /></span></td>
+						<td class=" support-col"><a href="#">Suggestion Box</a> </td>
+					</tr>
+					<tr class="support-table-row">
+						<td><span>
+							<img src="/assets/images/NavTiles/u510.png" /></span></td>
+						<td class=" support-col"><a href="#">How-To&#39;s</a> </td>
+					</tr>
+					<tr class="support-table-row">
+						<td><span>
+							<img src="/assets/images/NavTiles/u518.png" /></span></td>
+						<td class=" support-col"><a href="#">Quick Links</a> </td>
+					</tr>
+					<tr><td class="support-table-row Support-space"></td></tr>
+
+				</table>
+				
+			</div>
+		</div>
+		<div class="row productcategory usp_bordertop">
+			<div class="col-md-6">
+				<p><span>
+				<img alt="" src="/assets/images/NavTiles/1.png" /></span></p>
+				<p class="usp_topproductstitle">Desktops &amp; Laptops</p>
+				<p><span>Create your personalized office today.</span></p>
+				<p><span>Fast. Stylish.</span></p>
+				<p><span><a href="#">Desktops</a></span></p>
+				<p><span><a href="/emc/usp/Pages/index.aspx#/ProductCatalog/laptops/all">Laptops</a></span></p>
+				<p><span><a href="#">Accessories</a> </span></p>
+				<p><span></span></p>
+
+			</div>
+			<div class="col-md-6 usp_borderleft">
+				<p><span>
+				<img alt="" src="/assets/images/NavTiles/2.png" /></span></p>
+				<p class="usp_topproductstitle">Collaboration &amp; Communication</p>
+				<p><span>Simple, flexible tools keep you</span></p>
+				<p><span>engaged &amp; productive.</span></p>
+				<p><span>Wherever you go.</span></p>
+				<p><span><a href="#">Collaboration </a></span></p>
+				<p><span><a href="#">Communiation </a></span></p>
+				<p><span><a href="#">Conferencing</a></span></p>
+			</div>
+		</div>
+		<div class="row productcategory usp_bordertop usp_borderboootm">
+			<div class="col-md-6 usp_borderright">
+				<p><span>
+				<img alt="" src="/assets/images/NavTiles/3.png" /></span></p>
+				<p class="usp_topproductstitle">Mobile</p>
+				<p><span>Maximize your potential.</span></p>
+				<p><span>Do business better on the move.</span></p>
+				<p><span><a href="#">Phones</a></span></p>
+				<p><span><a href="#">Tablets</a></span></p>
+				<p><span><a href="#">Accessories</a></span></p>
+				<p><span><a href="#">Mobile App Services</a></span></p>
+			</div>
+			<div class="col-md-6">
+				<p><span>
+				<img alt="" src="/assets/images/NavTiles/4.png" /></span></p>
+				<p class="usp_topproductstitle">Cloud Services</p>
+				<p><span>A higher standard in business productivity.</span></p>
+				<p><span>Efficient. Optimal and secure.</span></p>
+				<p><span><a href="#">Cloud Computing</a></span></p>
+			</div>
+		</div>
+		<div class="row topproductsrow">
+			<div class="col-md-12" >
+			 <span class="usp_topproductstitle"> Top Products </span>
+			 <div class="row">
+			 <div class="TopProductsContainer" ng-repeat="p in Products">
+			 	<table class="table-condensed">
+					<tr>
+						<td><a href="{{p.ProductLink}}"> <img ng-src="{{p.Image}}" /></a></td>
+					</tr>
+					<tr>
+						<td align="center" class="TopProductsContainer"><a href="{{p.ProductLink}}">{{p.Title}}</a> </td>
+					</tr>
+					<tr>
+						<td align="center" class="TopProductsContainer">
+						<div class="ratingcontainer"><span class="stars"><span style="width:{{p.AverageRating}}"></span></span></div>
+						<div class="TopProductsDataContainer"><a href="#">0 Reviews</a></div>
+						 </td>
+					</tr>				
+				</table>
+			 </div>
+			 </div>
+			</div>
+		</div>
+	</div>

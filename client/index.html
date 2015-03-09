@@ -1,0 +1,304 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title>Unified Service Portal</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(client) app/vendor.css -->
+      <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+      <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+      <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,client}) app/app.css -->
+    <link rel="stylesheet" href="app/app.css">
+      <!-- injector:css -->
+      <link rel="stylesheet" href="app/Cart/Cart.css">
+      <link rel="stylesheet" href="app/Checkout/Checkout.css">
+      <link rel="stylesheet" href="app/Order/Order.css">
+      <link rel="stylesheet" href="app/Product/Product.css">
+      <link rel="stylesheet" href="app/ProductCatalog/ProductCatalog.css">
+      <link rel="stylesheet" href="app/account/login/login.css">
+      <link rel="stylesheet" href="app/admin/admin.css">
+      <link rel="stylesheet" href="app/app.css">
+      <link rel="stylesheet" href="app/complete/complete.css">
+      <link rel="stylesheet" href="app/confirm/confirm.css">
+      <link rel="stylesheet" href="app/main/main.css">
+      <link rel="stylesheet" href="components/modal/modal.css">
+      <!-- endinjector -->
+    <!-- endbuild -->
+  </head>
+  <body ng-app="uspappApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+
+
+
+
+    <div id="Splash" style="z-index:2;background-color: #FFFFFF; height: 100%; width: 100%; position: fixed; text-align: center;padding: 0; margin: 0">
+        <img style="vertical-align:middle; padding-top: 10%" src="/assets/images/circle-loading-animation.gif">
+    </div>
+    
+    <div class="mobile-navigation">
+        
+    </div>
+
+    <div class="animated-wrapper hardware-accelarate full-content" style="width: 100%" data-state="neutral">
+        <header class="container typography-content" ng-controller="HeaderCtrl" ng-cloak>
+            <div class="nav navbar-default">
+
+                <div class="navbar-header col-xs-12 navbar-row-1">
+                    <div class="col-xs-2 navbar-toggle">
+                        <button type="button" class="btn btn-md btn-default glyphicon glyphicon-align-justify square-corner"></button>
+                    </div>
+                    <div class="col-xs-8 col-md-8">
+                        <a class="col-xs-6 col-md-4 logo-link" href="/"><img src="/assets/images/PortalLogo.png" alt="Portal" /></a>
+                        <div class="col-xs-8 collapse navbar-collapse">
+                            <span class="glyphicon glyphicon-user user-name">
+                              <span style="font-family:'Verdana Regular', 'Verdana'; font-size: 15px;">Welcome {{userName}}</span>
+                              <span style="font-size:8px; vertical-align: top; margin-top: 4px;" class="glyphicon glyphicon-chevron-down"></span>
+                              <div class="user-menu">
+                  <p><a href="#/myaccount">My Profile</a></p>
+                  <p><a href="#/orderhistory">Order History</a></p>
+                  
+                </div>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="navbar-collapse collapse col-md-4 pull-right navigation-buttons">
+                        <div>
+                           <!-- <button type="button" class="btn btn-success glyphicon glyphicon-flag navigation-button navigation-button-flag">4</button> -->
+                            &nbsp;&nbsp;
+                            <a href="#/Cart" class="btn btn-warning glyphicon glyphicon-shopping-cart navigation-button navigation-button-disabled">{{cart}}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navbar-header navbar-row-2" ng-cloak>
+                    <ul class="nav navbar-nav col-sm-7 navbar-collapse collapse">
+                        <li class="nav navigation-links"><a href="#">Home</a></li>
+                        <li class="nav navigation-links" style="text-align:center" ng-repeat="main in FullNavigation">
+                            <a href="#">{{main.Title}}</a>
+                            <img src="/assets/images/u190.png" class="drop-down-img" />
+                            <div class="drop-down-featured grey-gradient">
+                                <div class="typography-header" style="padding-top:20px;padding-bottom:10px">Featured Item</div>
+                                <img ng-src="{{main.Featured.Image}}" class="align-center" />
+                                <div class="drop-down-featured-links"><a>{{main.Featured.Title}}</a></div>
+                                <div ng-class="['align-center', main.Featured.Rating]"></div>
+                                <div class="drop-down-featured-links"><a>0 Reviews</a></div>
+                                <div class="drop-down-featured-links">
+                                    <a class="btn btn-lg btn-warning" ng-href="#/order/{{main.Featured.ID}}">Quick Order</a>
+                                </div>
+                            </div>
+                            <div class="drop-down-div">
+                                <table class="navigation-table">
+                                    <tr>
+                                        <td class="navigation-child" ng-repeat="sub in main.SubMenu">
+                                            <div class="typography-header">{{sub.Title}}</div>
+                                            <ul class="list-unstyled sub-navigation-ul">
+                                                <li class="sub-navigation-li" ng-repeat="link in sub.
+                                                NavLinks"><a ng-href="{{link.URL}}">{{link.Title}}</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class=""></div>
+                        </li>
+                    </ul>
+
+                    <div class="input-group col-sm-12 col-md-3 form-group pull-right main-search">
+                        <input type="text" class="form-control search-input square-corner" placeholder="search" ng-model="Search" />
+                                                
+                        <span class="input-group-btn">
+                            <a ng-click="RedirectSearch()" ng-href="{{Searchurl + Search}}" class="btn btn-xs btn-default glyphicon glyphicon-search square-corner search-button" ></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <article class="container">
+          <div ng-view>
+            
+          </div>
+        </article>
+
+        <footer class="container footer-main">
+            <div class="bottom" id="usp_footer">
+                <div class="container">
+                    <div class="row footer-row">
+                        <div class="col-md-4" id="usp_FooterSection1">
+                            <div class="ExternalClass4B31A28043934A059208D2252BB84EFF">
+                               <p>​​<span style="color: #1e1e1e; font-family: &quot;verdana bold&quot;, verdana; font-size: 18px; font-weight: bold; white-space: nowrap;">Portal Delivers IT-As-A-Service</span></p>
+                               <p style="color: #666666; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px; margin-bottom: 0px;">Portal makes it easy for you</p>
+                               <p style="color: #666666; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px; margin-bottom: 0px;">to discover, obtain, and get support on IT products and services.​</p>
+                               <div style="text-align: left;">​<img src="/assets/images/u472.png" alt="" style="margin: 5px; color: #1e1e1e; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 20px;"/><span style="color: #1e1e1e; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 20px;">1</span><span style="color: #1e1e1e; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 20px;">-888-555-1212</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" id="usp_FooterSection2">
+                            <div class="ExternalClass9BE31A548E4B41689D0EB3D685A21E00">
+                               <p>​<span style="color: #1e1e1e; font-family: &quot;verdana bold&quot;, verdana; font-size: 18px; font-weight: bold; white-space: nowrap;">Browse Service Catalog</span>​</p>
+                               <div class="ax_paragraph" style="left: 788px; top: 1306px; width: 187px; height: 20px; color: #2c95dc; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px;">
+                                  <div class="text" style="left: 0px; top: 0px; width: 187px; -ms-word-wrap: break-word;"> 
+                                     <a href="/emc/usp" style="color: #2c95dc; margin-bottom: 0px;">Desktops &amp; Lap​tops ​​ </a></div>
+                               </div>
+                               <div class="ax_paragraph" style="left: 788px; top: 1329px; width: 241px; height: 20px; color: #2c95dc; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px;">
+                                  <div class="text" style="left: 0px; top: 0px; width: 241px; -ms-word-wrap: break-word;"> 
+                                     <a href="/emc/usp" style="color: #2c95dc; margin-bottom: 0px;">Collaboration &amp; Communication</a> </div>
+                               </div>
+                               <div class="ax_paragraph" style="left: 788px; top: 1351px; width: 137px; height: 20px; color: #2c95dc; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px;">
+                                  <div class="text" style="left: 0px; top: 0px; width: 137px; -ms-word-wrap: break-word;"> 
+                                     <a href="/emc/usp" style="color: #2c95dc; margin-bottom: 0px;">Cloud Services</a> </div>
+                               </div>
+                               <div class="ax_paragraph" style="left: 788px; top: 1373px; width: 87px; height: 20px; color: #2c95dc; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px;">
+                                  <div class="text" style="left: 0px; top: 0px; width: 87px; -ms-word-wrap: break-word;"> 
+                                     <a href="/emc/usp" style="color: #2c95dc; margin-bottom: 0px;">​​​​Mobility</a> </div>
+                               </div>
+                               <p> 
+                                  <br/> &#160;</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4" id="usp_FooterSection3">
+                            <div class="ExternalClassB7DD8760E2CA43AC80AD4B8B59801ADB">
+                               <p>​<span style="color: #1e1e1e; font-family: &quot;verdana bold&quot;, verdana; font-size: 18px; font-weight: bold; white-space: nowrap;">IT Support</span>​</p>
+                               <div class="ax_paragraph" style="left: 1114px; top: 1306px; width: 187px; height: 20px; color: #2c95dc; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px;">
+                                  <div class="text" style="left: 0px; top: 0px; width: 187px; -ms-word-wrap: break-word;">
+                                     <a href="/emc/usp" style="color: #2c95dc; margin-bottom: 0px;">Self-H​elp</a> </div>
+                               </div>
+                               <div class="ax_paragraph" style="left: 1114px; top: 1329px; width: 101px; height: 20px; color: #2c95dc; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px;">
+                                  <div class="text" style="left: 0px; top: 0px; width: 101px; -ms-word-wrap: break-word;">
+                                     <a href="/emc/usp" style="color: #2c95dc; margin-bottom: 0px;">Community</a> </div>
+                               </div>
+                               <div class="ax_paragraph" style="left: 1114px; top: 1351px; width: 61px; height: 20px; color: #2c95dc; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px;">
+                                  <div class="text" style="left: 0px; top: 0px; width: 61px; -ms-word-wrap: break-word;">
+                                     <a href="/emc/usp" style="color: #2c95dc; margin-bottom: 0px;">Chat</a> </div>
+                               </div>
+                               <div class="ax_paragraph" style="left: 1114px; top: 1373px; width: 87px; height: 20px; color: #2c95dc; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px;">
+                                  <div class="text" style="left: 0px; top: 0px; width: 87px; -ms-word-wrap: break-word;">
+                                     <a href="/emc/usp" style="color: #2c95dc; margin-bottom: 0px;">Email​​</a> </div>
+                               </div>
+                               <div class="ax_paragraph" style="left: 1114px; top: 1394px; width: 101px; height: 20px; color: #2c95dc; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px;">
+                                  <div class="text" style="left: 0px; top: 0px; width: 101px; -ms-word-wrap: break-word;">
+                                     <a href="/emc/usp" style="color: #2c95dc; margin-bottom: 0px;">Phone​</a> </div>
+                               </div>
+                               <div class="ax_paragraph" style="left: 1114px; top: 1416px; width: 211px; height: 20px; color: #2c95dc; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px;">
+                                  <div class="text" style="left: 0px; top: 0px; width: 211px; -ms-word-wrap: break-word;">
+                                     <a href="/emc/usp" style="color: #2c95dc; margin-bottom: 0px;">Create an Incident/Request</a> </div>
+                               </div>
+                               <div class="ax_paragraph" style="left: 1114px; top: 1438px; width: 131px; height: 20px; color: #2c95dc; line-height: 20px; font-family: &quot;verdana regular&quot;, verdana; font-size: 15px;">
+                                  <div class="text" style="left: 0px; top: 0px; width: 131px; -ms-word-wrap: break-word;">
+                                     <a href="/emc/usp" style="color: #2c95dc; margin-bottom: 0px;">​Have Fee​dback?</a> </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row footer-row">
+                        <div class="col-md-6" ng-cloak>2014 EMC Corporation. All rights reserved</div>
+                        <div class="col-md-6 usp_footerimageDIV" id="usp_footerimage">
+                          <img src="/assets/images/Footer_Logo.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+  <input type="hidden" id="__REQUESTDIGEST" />
+  
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $(".glyphicon-align-justify").click(function () {
+            if (jQuery(".animated-wrapper").attr('data-state') === 'neutral') {
+                jQuery(".animated-wrapper").attr('data-state', 'slide-right')
+            } else {
+                jQuery(".animated-wrapper").attr('data-state', 'neutral')
+            }
+        });
+    });
+    </script>
+
+
+
+
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-XXXXX-X');
+      ga('send', 'pageview');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- build:js({client,node_modules}) app/vendor.js -->
+      <!-- bower:js -->
+      <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.js"></script>
+      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+      <script src="bower_components/angular-route/angular-route.js"></script>
+      <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/checklist-model/checklist-model.js"></script>
+      <script src="bower_components/moment/moment.js"></script>
+      <script src="bower_components/ng-file-upload-shim/angular-file-upload-shim.js"></script>
+      <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+      <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,client}) app/app.js -->
+        <script src="app/app.js"></script>
+          <!-- injector:js -->
+          <script src="app/Cart/Cart.controller.js"></script>
+          <script src="app/Cart/Cart.js"></script>
+          <script src="app/Checkout/Checkout.controller.js"></script>
+          <script src="app/Checkout/Checkout.js"></script>
+          <script src="app/DataAccess/DataAccess.service.js"></script>
+          <script src="app/Header/Header.controller.js"></script>
+          <script src="app/Order/Order.controller.js"></script>
+          <script src="app/Order/Order.js"></script>
+          <script src="app/Product/Product.controller.js"></script>
+          <script src="app/Product/Product.js"></script>
+          <script src="app/ProductCatalog/ProductCatalog.controller.js"></script>
+          <script src="app/ProductCatalog/ProductCatalog.js"></script>
+          <script src="app/UspServerRest/UspServerRest.service.js"></script>
+          <script src="app/account/account.js"></script>
+          <script src="app/account/login/login.controller.js"></script>
+          <script src="app/account/settings/settings.controller.js"></script>
+          <script src="app/account/signup/signup.controller.js"></script>
+          <script src="app/admin/admin.controller.js"></script>
+          <script src="app/admin/admin.js"></script>
+          <script src="app/complete/complete.controller.js"></script>
+          <script src="app/complete/complete.js"></script>
+          <script src="app/confirm/confirm.controller.js"></script>
+          <script src="app/confirm/confirm.js"></script>
+          <script src="app/main/main.controller.js"></script>
+          <script src="app/main/main.js"></script>
+          <script src="components/auth/auth.service.js"></script>
+          <script src="components/auth/user.service.js"></script>
+          <script src="components/modal/modal.service.js"></script>
+          <script src="components/mongoose-error/mongoose-error.directive.js"></script>
+          <script src="components/navbar/navbar.controller.js"></script>
+          <!-- endinjector -->
+        <!-- endbuild -->
+</body>
+</html>

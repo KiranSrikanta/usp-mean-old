@@ -1,0 +1,227 @@
+<div class="container" id="usp_products">
+	<div class="row">
+		<div class="col-md-4">
+			<table class="usp_tableimagecontainer">
+				<tr>
+					<td>
+					<div class="usp_imagepreview">
+						<a ng-click="openInNewWindow($event)">
+						<input type="image" class="usp_previewImages" ng-src="{{Image1}}" />
+						</a></div>
+					<div class="usp_imagepreview">
+						<a ng-click="openInNewWindow($event)">
+						<input type="image" class="usp_previewImages" ng-src="{{Image2}}" /></a>
+					</div>
+					<div class="usp_imagepreview">
+						<a ng-click="openInNewWindow($event)">
+						<input type="image" class="usp_previewImages" ng-src="{{Image3}}" /></a>
+					</div>
+					</td>
+					<td>
+					<div class="usp_imagemainview">
+						<input type="image" alt="" ng-src="{{Image}}" />
+					</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-8">
+			<table id="usp_prodcutdetailstable">
+				<tr>
+					<td id="usp_productTitle">{{Title}}</td>
+					<td class="usp_itemratings">
+					<div class="ratingcontainer">
+						<span class="stars">
+						<span style="width:{{Rating}}"></span>
+						</span></div>
+					</td>
+					<td id="usp_ratinginNo">{{RatingNo | number:1}}</td>
+				</tr>
+				<tr>
+					<td id="usp_productDescription"></td>
+				</tr>
+				<tr>
+					<td>
+					<a href="{{OrderLink}}"> <img alt="" src="/assets/images/button_order_u1211.png" ></a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="row" id="usp_producttabs">
+		<div class="col-md-12">
+			<div class="container" id="usp_tabsHeading" ng-init="tab = 1">
+				<div class="row">
+					<div class="col-md-1" ng-class="{active:tab===1}"><a href="" ng-click="tab = 1">FEATURES</a></div>
+					<div class="col-md-1"><span>|</span></div>
+					<div class="col-md-1" ng-class="{active:tab===2}"><a href="" ng-click="tab = 2">MODELS</a></div>
+					<div class="col-md-1" ><span>|</span></div>
+					<div class="col-md-1" ng-class="{active:tab===3}"><a href="" ng-click="tab = 3">INTENDED USE</a></div>
+					<div class="col-md-7" id="usp_tabshorizontalline"><hr /></div>
+				</div>
+			</div>
+
+			<table id="usp_tabsdetailstable">
+				<tr>
+					<td>
+						<div ng-show="tab === 1" id="usp_productFeatures"></div>
+						<div ng-show="tab === 2" id="usp_productModels">
+					
+							<table id="usp_productModelMainTable" style="width: 100%">
+								<tr>
+									<td>
+									
+										<table id="usp_productsmodelfieldstable" style="width: 100%">
+											<tr>
+												<td class="usp_modelblock">Model:</td>
+											</tr>
+											<tr>
+												<td>Nickname:</td>
+											</tr>
+											<tr>
+												<td>Weight:</td>
+											</tr>
+											<tr>
+												<td>CPU:</td>
+											</tr>
+											<tr>
+												<td>Memory:</td>
+											</tr>
+											<tr>
+												<td>Storage:</td>
+											</tr>
+											<tr>
+												<td>Optical Drive:</td>
+											</tr>
+											<tr>
+												<td>Display:</td>
+											</tr>
+											<tr>
+												<td>Graphics:</td>
+											</tr>
+											<tr>
+												<td>Mobility Profile:</td>
+											</tr>
+											<tr>
+												<td>Applications:</td>
+											</tr>
+											<tr>
+												<td>OS:</td>
+											</tr>
+											<tr>
+												<td>Price:</td>
+											</tr>
+											<tr>
+												<td class="usp_modelOrderButtons"></td>
+											</tr>
+										</table>
+									
+									</td>
+									<td>
+										<div ng-repeat="p in ProductModels" class="usp_productmodeldisplay" >
+											<table id="usp_productsmodelvaluetable" style="width: 100%;" >
+												<tr>
+													<td class="usp_modelblock">
+													<input type="image" ng-src="{{p.ModelImage}}" /></br>
+													{{p.Model}}</td>
+												</tr>
+												<tr>
+													<td>{{p.Nickname}}</td>
+												</tr>
+												<tr>
+													<td>{{p.Weight}}</td>
+												</tr>
+												<tr>
+													<td>{{p.CPU}}</td>
+												</tr>
+												<tr>
+													<td>{{p.Memory}}</td>
+												</tr>
+												<tr>
+													<td>{{p.Storage}}</td>
+												</tr>
+												<tr>
+													<td>{{p.OpticalDrive}}</td>
+												</tr>
+												<tr>
+													<td>{{p.Display}}</td>
+												</tr>
+												<tr>
+													<td>{{p.Graphics}}</td>
+												</tr>
+												<tr>
+													<td>{{p.MobilityProfile}}</td>
+												</tr>
+												<tr>
+													<td>{{p.Applications}}</td>
+												</tr>
+												<tr>
+													<td>{{p.OS}}</td>
+												</tr>
+												<tr>
+													<td>{{p.Price | currency:"$":0}}</td>
+												</tr>
+												<tr>
+													<td class="usp_modelOrderButtons"><a href="{{p.ModelOrderLink}}"> <img alt="" src="/assets/images/u936.png"></a></td>
+												</tr>
+											</table>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div ng-show="tab === 3" id="usp_productIntendedUse"></div>
+						<hr id="usp_tabsdetailshorizontalline"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="row usp_review">
+		<div class="col-md-8">
+			<span class="usp_topproductstitle">Reviews</span>
+			<div class="row usp_reviewrows">
+				<div class="col-md-4">Average Customer Rating:</div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-2">
+							<div class="ratingcontainer">
+								<span class="stars">
+									<span style="width:{{AverageRating}}"></span>
+								</span>
+							</div>
+						</div>
+						<div class="col-md-1"><b>{{Average}}</b></div>
+					</div>
+				</div>
+			</div>
+			<div class="usp_writeproductreview">
+				<a href="http://test2012:2014/emc/usp/Lists/USPReviews/NewForm.aspx?Source=http%3A%2F%2Ftest2012%3A2014%2Femc%2Fusp%2FLists%2FUSPReviews%2FAllItems%2Easpx&RootFolder=%2Femc%2Fusp%2FLists%2FUSPReviews" >Write your own review</a>
+			</div>
+			<div class="row usp_reviewrows" ng-repeat="r in Reviews">
+				<div class="col-md-2">
+					<div class="ratingcontainer">
+						<span class="stars">
+							<span style="width:{{r.Rating}}"></span>
+						</span>
+					</div>
+				</div>
+				<div class="col-md-6"><div><b>{{r.Title}}</b> </div><div>{{r.Description}}</div></div>
+				<div class="col-md-4">
+					<div class="row"><div class="col-md-6"><b>Reviewer:</b></div><div class="col-md-6">{{r.Author}}</div></div>
+					<div class="row"><div class="col-md-6"><b>Date:</b></div><div class="col-md-6">{{r.Created}}</div></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 usp_writeproductreview">
+					<a href="http://test2012:2014/emc/usp/Lists/USPReviews/AllItems.aspx">See all reviews</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12 usp_review">
+			<span class="usp_topproductstitle">Discussions</span>
+		</div>
+	</div>
+</div>

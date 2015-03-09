@@ -1,0 +1,19 @@
+<div class="typography-content checkout-main" style="min-height: 318px" ng-cloak>
+    <!--Header-->
+    <div class="typography-header">Your Order Has Been Submitted</div>
+
+
+    <p>Your order number is <strong>{{Order._id}}</strong></p>
+
+    <p>Thank you for submitting your request for the following item(s):</p>
+    
+    <ul class="list-unstyled" style="margin-left: 20px">
+        <li ng-repeat="item in Cart">{{item.Product}}</li>
+    </ul>
+
+    <p>Your request will be sent to the approver.  You will receive an email when your request has been completed.</p>
+
+    <p>Questions can be directed to the support desk at 888-555-1212.</p>
+
+    <p>Return to <a href="/">Portal Home</a>.</p>
+</div>

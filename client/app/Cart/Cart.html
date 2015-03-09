@@ -1,0 +1,143 @@
+<div class="usp_catalogmaintable usp_setwidth usp_forms">
+	<div id="uspshoppingcartcontainer">
+		<div id="usp_shoppingcarttextarea">
+			<span class="usp_formtitle">My Shopping Cart</span>
+			<p>You may complete your order of items in the Ready to Purchase list. 
+			You can also move items to your Saved for Later queue to purchase at 
+			a later time.</p>
+		</div>
+		<div id="usp_shoppingcartgridcontainer">
+			<span class="usp_formsubtitle">Ready to Purchase</span>
+			<!-- Shopping cart table starts here -->
+			<div class="table-responsive">
+			<table class="usp_productstable">
+			    <tr class="usp_productstableheadr">
+			      <td style="width:35%">Product</td>
+			      <td style="width:15%">Cost/Billing</td>
+			      <td style="width:10%" class="usp_productstableQty">Qty</td>
+			      <td style="width:15%">Total</td>
+			      <td style="width:25%">Actions</td>
+			    </tr>
+				<tr ng-repeat="cart in CartProducts | filter: {Status: 'Cart'}">
+					<td>
+					<span>{{ cart.Product 
+					|| &#39;empty&#39; }} </span></td>
+					<td><span>{{ cart.Cost | currency:$:0 }} </span></td>
+					<td class="usp_productstableQty">
+					
+					<span editable-select="cart.Quantity" e-name="Qty" e-form="rowform" e-ng-options="s.value as s.text for s in Quantity">
+					{{ showStatus(cart) }} </span></td>
+					<td><span e-form="rowform">{{cart.Quantity * cart.Cost | currency:$:0}} </span></td>
+					<td style="white-space: nowrap">
+					<!-- form -->
+					<form editable-form="" name="rowform" onbeforesave="saveCart($data, cart, cart.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == cart">
+						<button type="submit" ng-disabled="rowform.$waiting" class="usp_nostyleButton">
+						save</button>
+						<button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="usp_nostyleButton">
+						cancel</button>
+					</form>
+					<div class="buttons" ng-show="!rowform.$visible">
+						<button class="usp_nostyleButton" ng-click="rowform.$show()">
+						Edit</button>
+						<span> | </span>
+						<button class="usp_nostyleButton" ng-click="removeCart($index, cart._id)">
+						Remove</button>
+						<span> | </span>
+						<button class="usp_nostyleButton" ng-click="SaveForLater(cart, $index)">Save for Later</button>
+
+					</div>
+					</td>
+				</tr>
+				<tr><td>{{noCart}}</td></tr>
+			</table>
+			</div>
+			<hr id="usp_cartline"/>
+			<!-- Shopping cart table ends here -->
+			<div id="usp_cartLinks">
+				<table style="width: 100%">
+					<tr>
+						<td class="usp_cartLinksalign" style="width: 180px">
+						<a href="/">Continue Shopping</a></td>
+						<!--<td class="usp_cartLinksalign" style="width: 100px">
+						<a href="">Clear</a></td>-->
+						<td class="usp_cartLinksalign"><a href="/Checkout">
+						<img type="image" alt="" src="/assets/images/u570.png" />
+						</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="usp_savedforlatercontainer">
+			<span class="usp_formsubtitle">Saved for Later</span> 
+			<span style="white-space:nowrap"></span>
+			<!-- Shopping cart table starts here -->
+			<div class="table-responsive">
+			<table class="usp_productstable">
+			    <tr class="usp_productstableheadr">
+			      <td style="width:35%">Product</td>
+			      <td style="width:15%">Cost/Billing</td>
+			      <td style="width:10%" class="usp_productstableQty">Qty</td>
+			      <td style="width:15%">Total</td>
+			      <td style="width:25%">Actions</td>
+			    </tr>
+			    <tr ng-repeat="save in CartProducts | filter: {Status: 'Saved'}">
+			      <td>			        
+			        <span>
+			          {{ save.Product || 'empty' }}
+			        </span>
+			      </td>			      
+			      <td>			        
+			        <span>
+			          {{ save.Cost | currency:$:0 }}
+			        </span>
+			      </td>
+			      <td class="usp_productstableQty">
+			        <!-- editable Quantity (select-local) -->
+			        <span editable-select="save.Quantity" e-name="Qty" e-form="saveforlaterform" e-ng-options="s.value as s.text for s in Quantity">
+			          {{ showStatus(save) }}
+			        </span>
+			      </td>
+			       <td>			        
+			        <span>
+			          {{save.Quantity * save.Cost | currency:$:0}}
+			          </span>
+
+			      </td>
+
+			      <td style="white-space: nowrap">
+			        <!-- form -->
+			        <form editable-form name="saveforlaterform" onbeforesave="saveforlaterproducts($data, save, save._id)" ng-show="saveforlaterform.$visible" class="form-buttons form-inline" shown="inserted == save">
+			        <button type="submit" ng-disabled="saveforlaterform.$waiting" class="usp_nostyleButton">
+						save</button>
+
+			          
+			          <button type="button" ng-disabled="saveforlaterform.$waiting" ng-click="saveforlaterform.$cancel()" class="usp_nostyleButton">
+			            cancel
+			          </button>
+			        </form>
+			        <div class="buttons" ng-show="!saveforlaterform.$visible">
+			          <button type="button" class="usp_nostyleButton" ng-click="saveforlaterform.$show()">Edit</button>
+			          <span> | </span>
+			          <button type="button" class="usp_nostyleButton" ng-click="removeCart($index, save._id)">Remove</button>
+			          <span> | </span>
+			          <button type="button" class="usp_nostyleButton" ng-click="ReadyToPurchase(save, $index)">Ready to Purchase</button>
+			        </div>  
+			      </td>
+			    </tr>
+			    <tr><td>{{noItem}}</td></tr>
+			  </table>
+			</div>
+			<section id="usp_termsSection">
+					<ul>
+						<li>You may add up to 10 items to the shopping cart in one order.</li>
+						<li>Items added to the cart will be automatically saved for 7 days.</li>
+						<li>Saving the cart will store items for 14 days.</li>
+						<li>Prices shown are rounded and are for the US unless available 
+						in your local currency.</li>
+						<li>Currency totals for items will appear separately.</li>
+					</ul>
+			</section>
+		</div>
+		
+	</div>
+</div>

@@ -1,0 +1,51 @@
+<div class="typography-content checkout-main" ng-cloak>
+    <!--Header-->
+    <div class="typography-header">Checkout</div>
+
+    <!--Customer-->
+    <div class="typography-subheading checkout-section-header">Customer</div>
+    <hr class="no-padding-margin" />
+    <div class="checkout-section">
+        <div class="row checkout-section-row">
+            <p class="col-md-12">Who is the customer? Please enter a network login or an email address.</p>
+        </div>
+        <div class="row checkout-section-row">
+            <div class="col-md-4">This order is for</div><div class="col-md-8">
+                <input type="text" ng-model="Order.RequestedBy" />
+                <!--<sp-people-picker value="Person" allowmultiplevalues="false"></sp-people-picker>-->
+                <div>Example: corp\joed or joe.doe@emc.com</div>
+            </div>
+        </div>
+        <div class="row checkout-section-row">
+            <div class="col-md-4">Billing Cost Center</div><div class="col-md-8">161524</div>
+        </div>
+        <div class="row checkout-section-row">
+            <p class="col-md-12">Pricing and delivery times are based on the customer's location and may have changed. Please review and confirm on the next page</p>
+        </div>
+    </div>
+
+    <!--Shipping and Delivery-->
+    <div class="typography-subheading checkout-section-header">Shipping and Delivery</div>
+    <hr class="no-padding-margin" />
+    <div class="checkout-section">
+        <p class="col-md-12">Digital items will be delivered electronically to the customer shown above.</p>
+    </div>
+
+    <!--Contact Information-->
+    <div class="typography-subheading checkout-section-header">Contact Information</div>
+    <hr class="no-padding-margin" />
+    <div class="checkout-section">
+        <div class="row checkout-section-row">
+            <div class="col-md-4">Office Phone</div><div class="col-md-8"><input type="text" ng-model="Order.Mobile" /></div>
+        </div>
+        <div class="row checkout-section-row">
+            <div class="col-md-4">Mobile Phone</div><div class="col-md-8"><input type="text" ng-model="Order.OfficePhone" /></div>
+        </div>
+    </div>
+
+    <!--Buttons-->
+    <div class="checkout-buttons pull-right">
+        <a class="btn btn-lg btn-warning" ng-click="Back()">Back</a>
+        <a class="btn btn-lg btn-warning" ng-click="Next()">Next</a>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container" id="usp_productCatalogMainTable">
+ 	<div class="row" id="uspproductcatalogcontainer">
+ 	<div class="col-md-2"  id="usp_productrefiner">
+ 	<span class="usp_catalogrefinerslabel">PRICE</span>
+	
+	<label ng-repeat="role in roles" style="display:block" id="usp_productrefinerlabel">
+		<input type="checkbox" checklist-model="user.roles" checklist-value="role.value" ng-model="user.roles" ng-click='CheckOne(role.value)' /> {{role.name}}
+	</label>
+ 	</div>
+	<div class="col-md-8" id="usp_productcatalog">
+	<span id="usp_cataloglable">{{CatalogLable}}</span>
+	<div ng-repeat="p in Products | filter:byRange(user.roles ,'MaximumPrice')" id="usp_productdisplay" >
+				<table class="table-condensed">
+					<tr>
+						<td><a href="{{p.ProductLink}}"> <img ng-src="{{p.Image}}" /></a></td>
+					</tr>
+					<tr>
+						<td align="center"><a href="{{p.ProductLink}}">{{p.Title}}</a> </td>
+					</tr>
+					<tr>
+						<td align="center">
+						<div class="ratingcontainer"><span class="stars"><span style="width:{{p.AverageRating}}"></span></span></div>
+						<div>{{p.MaximumPrice | currency:"$":0}}</div>
+						 </td>
+					</tr>				
+				</table>
+				
+			</div>
+	</div>
+ 	</div>
+ </div>

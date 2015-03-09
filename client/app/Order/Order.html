@@ -1,0 +1,159 @@
+<div class="row typography-content" ng-cloak>
+
+    <!--Product Order Form-->
+    <div class="col-md-9">
+
+        <!--Heading and Image-->
+        <h2 class="typography-header">Product Order Form</h2>
+        <img id="imgProductImage" ng-src="{{SelectedModel.Image}}" />
+
+
+        <!--Form Start-->
+        <!--Model-->
+        <div class="row form-row" ng-show="ShowModelOption">
+            <div class="col-md-2">
+                Model
+            </div>
+            <div class="col-md-6">
+                <select ng-model="SelectedModel" class="form-control" ng-options='model.Title + " (" + (model.Cost | currency) + ")" for model in Order.Models'></select>
+            </div>
+        </div>
+
+        <!--Reason for Request-->
+        <div class="row form-row">
+            <div class="col-md-2">
+                Reason for Request
+            </div>
+            <div class="col-md-6">
+                <select ng-model="Order.Reason" class="form-control">
+                    <option value="Replace aging system">Replace aging system</option>
+                    <option value="Replace a lost or stolen device">Replace a lost or stolen device</option>
+                    <option value="Replace damaged or non-functioning system">Replace damaged or non-functioning system</option>
+                    <option value="Lab equipment">Lab equipment</option>
+                    <option value="New Hire/Primary system">New Hire/Primary system</option>
+                    <option value="Special project">Special project</option>
+                    <option value="Temporary loaner">Temporary loaner</option>
+                </select>
+            </div>
+        </div>
+
+        <!--Business Justification-->
+        <div class="row form-row">
+            <div class="col-md-2">
+                Business Justification
+            </div>
+            <div class="col-md-8">
+                <textarea class="form-control" ng-model="Order.BusinessJustification" placeholder="Provide a brief justification to expedite approvals."></textarea>
+            </div>
+        </div>
+
+        <!--Attachment-->
+        <div class="row form-row">
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                <div class="button" ng-file-select="onFileSelect($files)" data-multiple="false" style="display: inline-block; vertical-align: bottom">
+                    <a style="cursor: pointer">Attachment</a>
+                </div>
+                &nbsp;&nbsp;<span ng-bind="Attachment.name"></span>
+            </div>
+        </div>
+
+        <!--Used Equipment Only-->
+        <div class="row form-row">
+            <div class="col-md-2">
+                Used Equipment Only
+            </div>
+            <div class="col-md-10 checkbox" style="margin-top: 0">
+                <label>
+                    <input type="checkbox" ng-model="Order.UsedEquipment" />I only want used equipment. Cancel my order if suitable used equipment is not available.
+                </label>
+            </div>
+        </div>
+
+        <!--Company Acquisition Policy-->
+        <div class="row form-row">
+            <div class="col-md-2">
+                Company Acquisition Policy
+            </div>
+            <div class="col-md-10 checkbox" style="margin-top: 0">
+                <label>
+                    <input type="checkbox" ng-model="Order.Policy" />Check here to confirm that you have read and understand the <a href="#" target="_blank">Company Acquisition Policy</a>
+                </label>
+            </div>
+        </div>
+
+        <!--Form Footer-->
+        <div class="row form-row">
+            <div class="col-md-12 FormPostScript">
+                After completing this form, click "Order Now" to order this item or "Add to Cart" to continue shopping.
+            </div>
+        </div>
+
+        <!--Product Order Form End-->
+    </div>
+
+    <!--Order Submit-->
+    <div class="col-md-3 grey-gradient order-section">
+
+        <!--Heading-->
+        <h2 class="typography-header order-heading">Order</h2>
+
+        <!--Form-->
+        <!--Price-->
+        <div class="row form-row">
+            <div class="col-md-4">
+                Price
+            </div>
+            <div class="col-md-8">
+                <span>{{SelectedModel.Cost | currency}}</span>
+            </div>
+        </div>
+
+        <!--Quantity-->
+        <div class="row form-row">
+            <div class="col-md-4">
+                Quantity
+            </div>
+            <div class="col-md-8">
+                <select ng-model="Order.Quantity">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+        </div>
+
+        <!--Subtotal-->
+        <div class="row form-row">
+            <div class="col-md-4">
+                Subtotal
+            </div>
+            <div class="col-md-8">
+                <span>{{Order.Quantity * SelectedModel.Cost | currency}}</span>
+            </div>
+        </div>
+
+        <!--Buttons-->
+        <div class="row form-row">
+            <div class="col-md-8">
+                <button type="button" ng-click="checkout()" class="btn btn-lg btn-warning">Place Order</button>
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-md-8">
+                <button type="button" ng-click="addToCart()" class="btn btn-lg btn-warning">Add to Cart</button>
+            </div>
+        </div>
+
+        <!--ETA-->
+        <div class="row form-row" ng-show="ShowETA">
+            <div class="col-md-8">
+                Expected delivery date
+                <br /><strong>{{Order.ETA}}</strong>
+            </div>
+        </div>
+    </div>
+
+</div>
