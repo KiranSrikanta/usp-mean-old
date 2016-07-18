@@ -30,7 +30,7 @@ angular.module('uspappApp')
       },
 
       User: function(){
-        return $resource('http://localhost:9000/api/UserProfiles/:id', {id:'@_id'});
+        return $resource('http:/localhost:9000/api/UserProfiles/:id', {id:'@_id'});
       }
     };
 

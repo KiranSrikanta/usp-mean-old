@@ -1,0 +1,6 @@
+---
+applications:
+- name: emc-usp-mean2
+  env:
+    NODE_ENV: production
+    DOMAIN: http://emc-usp-mean2.cfapps.io

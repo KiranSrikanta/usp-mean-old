@@ -43,18 +43,24 @@ exports.show = function(req, res) {
 // };
 
 // Updates an existing images in the DB.
-// exports.update = function(req, res) {
-//   if(req.body._id) { delete req.body._id; }
-//   Images.findById(req.params.id, function (err, images) {
-//     if (err) { return handleError(res, err); }
-//     if(!images) { return res.send(404); }
-//     var updated = _.merge(images, req.body);
-//     updated.save(function (err) {
-//       if (err) { return handleError(res, err); }
-//       return res.json(200, images);
-//     });
-//   });
-// };
+exports.update = function(req, res) {
+  var writestream = GridFS.createWriteStream({
+    filename: req.params.id
+  });
+  req.pipe(writestream);
+
+  res.send(201);
+  // if(req.body._id) { delete req.body._id; }
+  // Images.findById(req.params.id, function (err, images) {
+  //   if (err) { return handleError(res, err); }
+  //   if(!images) { return res.send(404); }
+  //   var updated = _.merge(images, req.body);
+  //   updated.save(function (err) {
+  //     if (err) { return handleError(res, err); }
+  //     return res.json(200, images);
+  //   });
+  // });
+};
 
 // Deletes a images from the DB.
 // exports.destroy = function(req, res) {
